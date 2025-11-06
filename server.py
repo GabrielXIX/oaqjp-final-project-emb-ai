@@ -1,3 +1,7 @@
+'''
+    Server module containing the main routes handling for Emotion Detection
+'''
+
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,6 +9,9 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def sent_detector():
+    '''
+        Function for handling emotion detection route
+    '''
     text_to_detect = request.args.get("textToAnalyze")
     response = emotion_detector(text_to_detect)
 
@@ -24,8 +31,10 @@ def sent_detector():
 
 @app.route("/")
 def render_index_page():
+    '''
+        Function for handling index route
+    '''
     return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
-
